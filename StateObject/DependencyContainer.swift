@@ -10,9 +10,11 @@ import Combine
 
 final class DependencyContainer: ObservableObject {
     let entryStore: EntryStore
+    let articleService: ArticleService
     
     init() {
         self.entryStore = EntryStore()
+        self.articleService = MockArticleService()
     }
 }
 

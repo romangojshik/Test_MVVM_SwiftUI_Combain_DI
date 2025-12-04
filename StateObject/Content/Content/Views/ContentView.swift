@@ -25,6 +25,10 @@ struct ContentView: View {
                 
                 Spacer()
                 
+                makeArticlePushButton()
+                
+                Spacer()
+                
                 BottomBarView(viewModel: BottomBarViewModel(entryStore: dependencyContainer.entryStore))
             }
             .padding()
@@ -43,6 +47,21 @@ struct ContentView: View {
         }
         label: {
             Text("Go to detail screen")
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .cornerRadius(8)
+        }
+    }
+    
+    private func makeArticlePushButton() -> some View {
+        NavigationLink {
+            ArticleView()
+                .environmentObject(dependencyContainer)  // передаем зависимости
+        }
+        label: {
+            Text("Go to article screen")
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .foregroundColor(.white)
