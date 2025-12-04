@@ -65,9 +65,8 @@ struct DetailView: View {
             TextField("Имя", text: $viewModel.name)
                 .textFieldStyle(.roundedBorder)
             
-            TextField("Email", text: $viewModel.email)
-                .textFieldStyle(.roundedBorder)
-                .keyboardType(.emailAddress)
+            // Создаем явный Binding
+            EmailFieldView(email: $viewModel.email)
             
             // Комбинация @State (showPassword) и @Binding (viewModel.password)
             VStack(alignment: .leading, spacing: 4) {
@@ -168,6 +167,16 @@ struct DetailView: View {
             }
             .font(.caption)
         }
+    }
+}
+
+struct EmailFieldView: View {
+    @Binding var email: String      // ← явный биндинг
+
+    var body: some View {
+        TextField("Email", text: $email)
+            .textFieldStyle(.roundedBorder)
+            .keyboardType(.emailAddress)
     }
 }
 
